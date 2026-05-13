@@ -1,6 +1,5 @@
 const portfolio = document.getElementById("portfolio");
 const sections = [...document.querySelectorAll(".panel")];
-const sideNav = document.getElementById("sideNav");
 const progressBar = document.getElementById("progressBar");
 const currentSection = document.getElementById("currentSection");
 
@@ -123,16 +122,6 @@ const details = {
 };
 
 sections.forEach((section, index) => {
-  const dot = document.createElement("button");
-  dot.className = "nav-dot";
-  dot.setAttribute("aria-label", `Vai a ${section.dataset.title}`);
-
-  dot.addEventListener("click", () => {
-    section.scrollIntoView({ behavior: "smooth" });
-  });
-
-  sideNav.appendChild(dot);
-
   const nextBtn = section.querySelector("[data-scroll-next]");
 
   if (nextBtn) {
@@ -146,8 +135,6 @@ sections.forEach((section, index) => {
   }
 });
 
-const dots = [...document.querySelectorAll(".nav-dot")];
-
 const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
@@ -158,9 +145,6 @@ const observer = new IntersectionObserver(
 
       sections.forEach(section => section.classList.remove("active"));
       entry.target.classList.add("active");
-
-      dots.forEach(dot => dot.classList.remove("active"));
-      dots[index].classList.add("active");
 
       currentSection.textContent = title;
       document.title = `${title} | Portfolio`;
@@ -176,6 +160,9 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach(section => observer.observe(section));
+
+sections[0].classList.add("active");
+progressBar.style.width = `${(1 / sections.length) * 100}%`;
 
 document.querySelectorAll("[data-open-detail]").forEach(button => {
   button.addEventListener("click", () => {
@@ -207,9 +194,13 @@ document.addEventListener("keydown", event => {
 });
 
 function goToSection(direction) {
-  const activeIndex = sections.findIndex(section =>
+  let activeIndex = sections.findIndex(section =>
     section.classList.contains("active")
   );
+
+  if (activeIndex === -1) {
+    activeIndex = 0;
+  }
 
   const nextIndex = activeIndex + direction;
 
