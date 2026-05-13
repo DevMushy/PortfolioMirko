@@ -1,0 +1,277 @@
+const portfolio = document.getElementById("portfolio");
+const sections = [...document.querySelectorAll(".panel")];
+const sideNav = document.getElementById("sideNav");
+const progressBar = document.getElementById("progressBar");
+const currentSection = document.getElementById("currentSection");
+
+const detailOverlay = document.getElementById("detailOverlay");
+const detailContent = document.getElementById("detailContent");
+const closeDetail = document.getElementById("closeDetail");
+
+const details = {
+  about: {
+    type: "cards",
+    title: "Chi sono",
+    text: "Questa sezione serve per raccontarti in modo più personale. Non deve sembrare un curriculum classico, ma una piccola esperienza interattiva.",
+    cards: [
+      {
+        title: "Creativo",
+        text: "Mi piace dare personalità alle interfacce, usando colori, movimento e dettagli riconoscibili."
+      },
+      {
+        title: "Tecnico",
+        text: "Lavoro sulla parte logica dei progetti: controlli, backend, API, sessioni, validazioni e flussi."
+      },
+      {
+        title: "Concreto",
+        text: "Cerco sempre di arrivare a una soluzione funzionante, pulita e semplice da mantenere."
+      }
+    ]
+  },
+
+  skills: {
+    type: "skills",
+    title: "Competenze",
+    text: "Qui puoi mostrare le tecnologie che conosci o le aree in cui lavori meglio.",
+    skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "Responsive",
+      "UI Design",
+      "Backend",
+      "API",
+      "Debug",
+      "Ottimizzazione",
+      "Database",
+      "UX"
+    ]
+  },
+
+  projects: {
+    type: "cards",
+    title: "Progetti",
+    text: "Ogni progetto può diventare una scheda cliccabile con screenshot, descrizione, tecnologie usate e link.",
+    cards: [
+      {
+        title: "Biglietteria online",
+        text: "Sistema di vendita con calendario, eventi, carrello, disponibilità e gestione ordini."
+      },
+      {
+        title: "Prenotazioni ombrelloni",
+        text: "Flusso con controlli su codici, abbonamenti, disponibilità e limiti giornalieri."
+      },
+      {
+        title: "Gestionale custom",
+        text: "Pannelli interni, tabelle, filtri, controlli e strumenti pensati per velocizzare il lavoro."
+      }
+    ]
+  },
+
+  timeline: {
+    type: "timeline",
+    title: "Percorso",
+    text: "Questa timeline può raccontare la tua crescita professionale o personale.",
+    items: [
+      {
+        year: "2022",
+        text: "Prime basi di sviluppo web, pagine semplici, layout e piccoli script."
+      },
+      {
+        year: "2023",
+        text: "Progetti più strutturati, interfacce dinamiche e prime logiche backend."
+      },
+      {
+        year: "2024",
+        text: "Sviluppo di flussi reali, prenotazioni, gestionali, validazioni e sistemi personalizzati."
+      },
+      {
+        year: "2025",
+        text: "Più attenzione a UX, animazioni, ordine del codice e identità visiva."
+      },
+      {
+        year: "2026",
+        text: "Portfolio personale, progetti più maturi e voglia di creare esperienze più riconoscibili."
+      }
+    ]
+  },
+
+  contacts: {
+    type: "cards",
+    title: "Contatti",
+    text: "Qui puoi mettere i tuoi link reali.",
+    cards: [
+      {
+        title: "Email",
+        text: "nome@email.it"
+      },
+      {
+        title: "GitHub",
+        text: "github.com/tuo-profilo"
+      },
+      {
+        title: "LinkedIn",
+        text: "linkedin.com/in/tuo-profilo"
+      },
+      {
+        title: "CV",
+        text: "Aggiungi qui il link al tuo curriculum."
+      }
+    ]
+  }
+};
+
+sections.forEach((section, index) => {
+  const dot = document.createElement("button");
+  dot.className = "nav-dot";
+  dot.setAttribute("aria-label", `Vai a ${section.dataset.title}`);
+
+  dot.addEventListener("click", () => {
+    section.scrollIntoView({ behavior: "smooth" });
+  });
+
+  sideNav.appendChild(dot);
+
+  const nextBtn = section.querySelector("[data-scroll-next]");
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const nextSection = sections[index + 1];
+
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+});
+
+const dots = [...document.querySelectorAll(".nav-dot")];
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const index = sections.indexOf(entry.target);
+      const title = entry.target.dataset.title;
+
+      sections.forEach(section => section.classList.remove("active"));
+      entry.target.classList.add("active");
+
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[index].classList.add("active");
+
+      currentSection.textContent = title;
+      document.title = `${title} | Portfolio`;
+
+      const progress = ((index + 1) / sections.length) * 100;
+      progressBar.style.width = `${progress}%`;
+    });
+  },
+  {
+    root: portfolio,
+    threshold: 0.65
+  }
+);
+
+sections.forEach(section => observer.observe(section));
+
+document.querySelectorAll("[data-open-detail]").forEach(button => {
+  button.addEventListener("click", () => {
+    const key = button.dataset.openDetail;
+    openDetail(key);
+  });
+});
+
+closeDetail.addEventListener("click", closePanel);
+
+detailOverlay.addEventListener("click", event => {
+  if (event.target === detailOverlay) {
+    closePanel();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closePanel();
+  }
+
+  if (event.key === "ArrowDown") {
+    goToSection(1);
+  }
+
+  if (event.key === "ArrowUp") {
+    goToSection(-1);
+  }
+});
+
+function goToSection(direction) {
+  const activeIndex = sections.findIndex(section =>
+    section.classList.contains("active")
+  );
+
+  const nextIndex = activeIndex + direction;
+
+  if (sections[nextIndex]) {
+    sections[nextIndex].scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function openDetail(key) {
+  const data = details[key];
+
+  if (!data) return;
+
+  let html = `
+    <h3 class="detail-title">${data.title}</h3>
+    <p class="detail-text">${data.text}</p>
+  `;
+
+  if (data.type === "cards") {
+    html += `<div class="card-grid">`;
+
+    data.cards.forEach(card => {
+      html += `
+        <article class="card">
+          <h4>${card.title}</h4>
+          <p>${card.text}</p>
+        </article>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if (data.type === "skills") {
+    html += `<div class="skill-list">`;
+
+    data.skills.forEach(skill => {
+      html += `<span class="skill-pill">${skill}</span>`;
+    });
+
+    html += `</div>`;
+  }
+
+  if (data.type === "timeline") {
+    html += `<div class="timeline">`;
+
+    data.items.forEach(item => {
+      html += `
+        <div class="timeline-item">
+          <strong>${item.year}</strong>
+          <span>${item.text}</span>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  detailContent.innerHTML = html;
+  detailOverlay.classList.add("open");
+}
+
+function closePanel() {
+  detailOverlay.classList.remove("open");
+}

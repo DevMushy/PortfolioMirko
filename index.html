@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Portfolio Creativo</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="grain"></div>
+  <div class="progress-line">
+    <span id="progressBar"></span>
+  </div>
+
+  <header class="floating-header">
+    <span id="currentSection">HOME</span>
+  </header>
+
+  <nav class="side-nav" id="sideNav"></nav>
+
+  <main class="portfolio" id="portfolio">
+
+    <section
+      class="panel home"
+      data-title="Home"
+      style="--bg:#3134c8; --primary:#46b84a; --secondary:#bd3f48; --text:#ffffff;"
+    >
+      <div class="blob blob-main"></div>
+      <div class="blob blob-bottom"></div>
+
+      <div class="content center">
+        <span class="chapter">PORTFOLIO / 2026</span>
+        <h1>HOME</h1>
+
+        <p class="home-subtitle">
+          Scorri per conoscermi<br />
+          di più
+        </p>
+
+        <button class="arrow-btn" data-scroll-next>
+          <span>↓</span>
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="panel"
+      data-title="Chi sono"
+      data-detail="about"
+      style="--bg:#111827; --primary:#fbbf24; --secondary:#f97316; --text:#ffffff;"
+    >
+      <div class="blob blob-main"></div>
+      <div class="blob blob-bottom"></div>
+
+      <div class="content">
+        <span class="chapter">01 / IDENTITÀ</span>
+        <h2>CHI<br />SONO</h2>
+
+        <p>
+          Sono una persona creativa e tecnica. Mi piace costruire cose belle,
+          ordinate e funzionali, unendo design, codice e logica.
+        </p>
+
+        <button class="action-btn" data-open-detail="about">
+          Entra nella sezione
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="panel"
+      data-title="Competenze"
+      data-detail="skills"
+      style="--bg:#06283d; --primary:#8ecae6; --secondary:#ef476f; --text:#ffffff;"
+    >
+      <div class="blob blob-main"></div>
+      <div class="blob blob-bottom"></div>
+
+      <div class="content">
+        <span class="chapter">02 / SKILL</span>
+        <h2>COSE CHE<br />SO FARE</h2>
+
+        <p>
+          Sviluppo interfacce, gestisco logiche backend, lavoro su layout
+          responsive e trasformo problemi complessi in flussi semplici.
+        </p>
+
+        <button class="action-btn" data-open-detail="skills">
+          Vedi competenze
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="panel"
+      data-title="Progetti"
+      data-detail="projects"
+      style="--bg:#073b4c; --primary:#06d6a0; --secondary:#118ab2; --text:#ffffff;"
+    >
+      <div class="blob blob-main"></div>
+      <div class="blob blob-bottom"></div>
+
+      <div class="content">
+        <span class="chapter">03 / PROGETTI</span>
+        <h2>PROGETTI<br />REALIZZATI</h2>
+
+        <p>
+          Ogni progetto racconta qualcosa: biglietterie online, prenotazioni,
+          gestionali, interfacce mobile e sistemi personalizzati.
+        </p>
+
+        <button class="action-btn" data-open-detail="projects">
+          Apri progetti
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="panel"
+      data-title="Percorso"
+      data-detail="timeline"
+      style="--bg:#22223b; --primary:#cdb4db; --secondary:#f2cc8f; --text:#ffffff;"
+    >
+      <div class="blob blob-main"></div>
+      <div class="blob blob-bottom"></div>
+
+      <div class="content">
+        <span class="chapter">04 / STORIA</span>
+        <h2>IL MIO<br />PERCORSO</h2>
+
+        <p>
+          Una linea temporale con le tappe principali, l’evoluzione, le cose
+          imparate e gli obiettivi futuri.
+        </p>
+
+        <button class="action-btn" data-open-detail="timeline">
+          Guarda timeline
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="panel"
+      data-title="Contatti"
+      data-detail="contacts"
+      style="--bg:#240046; --primary:#f72585; --secondary:#4cc9f0; --text:#ffffff;"
+    >
+      <div class="blob blob-main"></div>
+      <div class="blob blob-bottom"></div>
+
+      <div class="content">
+        <span class="chapter">05 / CONTATTI</span>
+        <h2>SCRIVIMI</h2>
+
+        <p>
+          Qui puoi mettere email, GitHub, LinkedIn, curriculum o qualsiasi link
+          utile per farti contattare.
+        </p>
+
+        <button class="action-btn" data-open-detail="contacts">
+          Contattami
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="detail-overlay" id="detailOverlay">
+    <aside class="detail-panel">
+      <button class="close-btn" id="closeDetail">×</button>
+      <div id="detailContent"></div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
