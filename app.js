@@ -11,19 +11,19 @@ const details = {
   about: {
     type: "cards",
     title: "Chi sono",
-    text: "Questa sezione serve per raccontarti in modo più personale. Non deve sembrare un curriculum classico, ma una piccola esperienza interattiva.",
+    text: "Ecco alcuni aspetti che mi rappresentano e che guidano il mio modo di lavorare e di approcciarmi ai progetti.",
     cards: [
       {
         title: "Creativo",
-        text: "Mi piace dare personalità alle interfacce, usando colori, movimento e dettagli riconoscibili."
+        text: "Mi piace immaginare nuove idee e trasformarle in progetti personali, curando colori, dettagli, interazioni e personalità."
       },
       {
-        title: "Tecnico",
-        text: "Lavoro sulla parte logica dei progetti: controlli, backend, API, sessioni, validazioni e flussi."
+        title: "Curioso",
+        text: "Mi piace imparare cose nuove, sperimentare tecnologie diverse e mettermi alla prova con sfide sempre differenti."
       },
       {
         title: "Concreto",
-        text: "Cerco sempre di arrivare a una soluzione funzionante, pulita e semplice da mantenere."
+        text: "Cerco di portare ogni idea a qualcosa di funzionante, semplice da usare e utile per migliorare le mie competenze."
       }
     ]
   },
@@ -31,20 +31,19 @@ const details = {
   skills: {
     type: "skills",
     title: "Competenze",
-    text: "Qui puoi mostrare le tecnologie che conosci o le aree in cui lavori meglio.",
+    text: "Ecco le competenze che possiedo e che mi permettono di realizzare i miei progetti.",
     skills: [
       "HTML",
       "CSS",
       "JavaScript",
       "PHP",
-      "Responsive",
-      "UI Design",
-      "Backend",
-      "API",
-      "Debug",
-      "Ottimizzazione",
-      "Database",
-      "UX"
+      "PostgreSQL",
+      "Figma",
+      "Git",
+      "flutter",
+      "Unity",
+      "C#",
+      "Docker",
     ]
   },
 
