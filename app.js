@@ -15,17 +15,17 @@ const details = {
     cards: [
       {
         title: "Creativo",
-        text: "Mi piace immaginare nuove idee e trasformarle in progetti personali, curando colori, dettagli, interazioni e personalità."
+        text: "Mi piace immaginare nuove idee e trasformarle in progetti personali, curando colori, dettagli, interazioni e personalità.",
       },
       {
         title: "Curioso",
-        text: "Mi piace imparare cose nuove, sperimentare tecnologie diverse e mettermi alla prova con sfide sempre differenti."
+        text: "Mi piace imparare cose nuove, sperimentare tecnologie diverse e mettermi alla prova con sfide sempre differenti.",
       },
       {
         title: "Concreto",
-        text: "Cerco di portare ogni idea a qualcosa di funzionante, semplice da usare e utile per migliorare le mie competenze."
-      }
-    ]
+        text: "Cerco di portare ogni idea a qualcosa di funzionante, semplice da usare e utile per migliorare le mie competenze.",
+      },
+    ],
   },
 
   skills: {
@@ -33,18 +33,55 @@ const details = {
     title: "Competenze",
     text: "Ecco le competenze che possiedo e che mi permettono di realizzare i miei progetti.",
     skills: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "PHP",
-      "PostgreSQL",
-      "Figma",
-      "Git",
-      "flutter",
-      "Unity",
-      "C#",
-      "Docker",
-    ]
+      {
+        name: "HTML",
+        level: 100,
+      },
+      {
+        name: "CSS",
+        level: 100,
+      },
+      {
+        name: "JavaScript",
+        level: 90,
+      },
+      {
+        name: "PHP",
+        level: 90,
+      },
+      {
+        name: "PostgreSQL",
+        level: 90,
+      },
+      {
+        name: "Figma",
+        level: 85,
+      },
+      {
+        name: "Git",
+        level: 85,
+      },
+      {
+        name: "Flutter",
+        level: 65,
+      },
+      {
+        name: "Unity",
+        level: 55,
+      },
+      {
+        name: "Unreal Engine",
+        level: 50,
+      },
+      {
+        name: "C#",
+        level: 75,
+      },
+      {
+        name: "Docker",
+        level: 70,
+      },
+    ],
   },
 
   projects: {
@@ -54,17 +91,17 @@ const details = {
     cards: [
       {
         title: "Biglietteria online",
-        text: "Sistema di vendita con calendario, eventi, carrello, disponibilità e gestione ordini."
+        text: "Sistema di vendita con calendario, eventi, carrello, disponibilità e gestione ordini.",
       },
       {
         title: "Prenotazioni ombrelloni",
-        text: "Flusso con controlli su codici, abbonamenti, disponibilità e limiti giornalieri."
+        text: "Flusso con controlli su codici, abbonamenti, disponibilità e limiti giornalieri.",
       },
       {
         title: "Gestionale custom",
-        text: "Pannelli interni, tabelle, filtri, controlli e strumenti pensati per velocizzare il lavoro."
-      }
-    ]
+        text: "Pannelli interni, tabelle, filtri, controlli e strumenti pensati per velocizzare il lavoro.",
+      },
+    ],
   },
 
   timeline: {
@@ -74,25 +111,25 @@ const details = {
     items: [
       {
         year: "2022",
-        text: "Prime basi di sviluppo web, pagine semplici, layout e piccoli script."
+        text: "Prime basi di sviluppo web, pagine semplici, layout e piccoli script.",
       },
       {
         year: "2023",
-        text: "Progetti più strutturati, interfacce dinamiche e prime logiche backend."
+        text: "Progetti più strutturati, interfacce dinamiche e prime logiche backend.",
       },
       {
         year: "2024",
-        text: "Sviluppo di flussi reali, prenotazioni, gestionali, validazioni e sistemi personalizzati."
+        text: "Sviluppo di flussi reali, prenotazioni, gestionali, validazioni e sistemi personalizzati.",
       },
       {
         year: "2025",
-        text: "Più attenzione a UX, animazioni, ordine del codice e identità visiva."
+        text: "Più attenzione a UX, animazioni, ordine del codice e identità visiva.",
       },
       {
         year: "2026",
-        text: "Portfolio personale, progetti più maturi e voglia di creare esperienze più riconoscibili."
-      }
-    ]
+        text: "Portfolio personale, progetti più maturi e voglia di creare esperienze più riconoscibili.",
+      },
+    ],
   },
 
   contacts: {
@@ -102,22 +139,22 @@ const details = {
     cards: [
       {
         title: "Email",
-        text: "nome@email.it"
+        text: "nome@email.it",
       },
       {
         title: "GitHub",
-        text: "github.com/tuo-profilo"
+        text: "github.com/tuo-profilo",
       },
       {
         title: "LinkedIn",
-        text: "linkedin.com/in/tuo-profilo"
+        text: "linkedin.com/in/tuo-profilo",
       },
       {
         title: "CV",
-        text: "Aggiungi qui il link al tuo curriculum."
-      }
-    ]
-  }
+        text: "Aggiungi qui il link al tuo curriculum.",
+      },
+    ],
+  },
 };
 
 sections.forEach((section, index) => {
@@ -135,14 +172,14 @@ sections.forEach((section, index) => {
 });
 
 const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
+  (entries) => {
+    entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
 
       const index = sections.indexOf(entry.target);
       const title = entry.target.dataset.title;
 
-      sections.forEach(section => section.classList.remove("active"));
+      sections.forEach((section) => section.classList.remove("active"));
       entry.target.classList.add("active");
 
       currentSection.textContent = title;
@@ -154,16 +191,16 @@ const observer = new IntersectionObserver(
   },
   {
     root: portfolio,
-    threshold: 0.65
-  }
+    threshold: 0.65,
+  },
 );
 
-sections.forEach(section => observer.observe(section));
+sections.forEach((section) => observer.observe(section));
 
 sections[0].classList.add("active");
 progressBar.style.width = `${(1 / sections.length) * 100}%`;
 
-document.querySelectorAll("[data-open-detail]").forEach(button => {
+document.querySelectorAll("[data-open-detail]").forEach((button) => {
   button.addEventListener("click", () => {
     const key = button.dataset.openDetail;
     openDetail(key);
@@ -172,13 +209,13 @@ document.querySelectorAll("[data-open-detail]").forEach(button => {
 
 closeDetail.addEventListener("click", closePanel);
 
-detailOverlay.addEventListener("click", event => {
+detailOverlay.addEventListener("click", (event) => {
   if (event.target === detailOverlay) {
     closePanel();
   }
 });
 
-document.addEventListener("keydown", event => {
+document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closePanel();
   }
@@ -193,8 +230,8 @@ document.addEventListener("keydown", event => {
 });
 
 function goToSection(direction) {
-  let activeIndex = sections.findIndex(section =>
-    section.classList.contains("active")
+  let activeIndex = sections.findIndex((section) =>
+    section.classList.contains("active"),
   );
 
   if (activeIndex === -1) {
@@ -221,7 +258,7 @@ function openDetail(key) {
   if (data.type === "cards") {
     html += `<div class="card-grid">`;
 
-    data.cards.forEach(card => {
+    data.cards.forEach((card) => {
       html += `
         <article class="card">
           <h4>${card.title}</h4>
@@ -233,20 +270,31 @@ function openDetail(key) {
     html += `</div>`;
   }
 
-  if (data.type === "skills") {
-    html += `<div class="skill-list">`;
+if (data.type === "skills") {
+  html += `<div class="skill-list">`;
 
-    data.skills.forEach(skill => {
-      html += `<span class="skill-pill">${skill}</span>`;
-    });
+  data.skills.forEach(skill => {
+    html += `
+      <div class="skill-row">
+        <div class="skill-head">
+          <strong>${skill.name}</strong>
+          <span>${skill.level}%</span>
+        </div>
 
-    html += `</div>`;
-  }
+        <div class="skill-bar">
+          <span style="width:${skill.level}%"></span>
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+}
 
   if (data.type === "timeline") {
     html += `<div class="timeline">`;
 
-    data.items.forEach(item => {
+    data.items.forEach((item) => {
       html += `
         <div class="timeline-item">
           <strong>${item.year}</strong>
