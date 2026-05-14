@@ -364,19 +364,56 @@ h2 {
 }
 
 .skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+  margin-top: 32px;
 }
 
-.skill-pill {
-  padding: 11px 14px;
+.skill-row {
+  padding: 18px;
+  border: 2px solid #111;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 6px 6px 0 #111;
+}
+
+.skill-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.skill-head strong {
+  font-size: 17px;
+}
+
+.skill-head span {
+  font-size: 15px;
+}
+
+.skill-bar {
+  height: 13px;
   border: 2px solid #111;
   border-radius: 999px;
-  background: #fff;
-  font-weight: 900;
-  box-shadow: 4px 4px 0 #111;
+  background: #f1f1f1;
+  overflow: hidden;
+}
+
+.skill-bar span {
+  display: block;
+  height: 100%;
+  background: #111;
+  border-radius: inherit;
+  animation: growSkill 0.8s ease forwards;
+}
+
+@keyframes growSkill {
+  from {
+    width: 0;
+  }
 }
 
 .timeline {
